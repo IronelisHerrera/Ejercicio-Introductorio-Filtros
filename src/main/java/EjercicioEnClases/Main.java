@@ -11,10 +11,10 @@ public class Main {
         port(8081);
 
          /*
-            http://localhost:8081/formulario
+            //http://localhost:8081/formulario
             Para repetir el proceso una vez visto el --bienvenidos--, poner la misma url
          */
-        staticFiles.location("/publico");
+        staticFiles.location("/spark/template/freemarker");
 
 
 

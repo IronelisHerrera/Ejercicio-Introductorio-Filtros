@@ -18,13 +18,11 @@ public class Filtros {
                         }
 
 
-
-
                 });
 
                 get("/", (request, response) -> {
-                        System.out.println("Entrando a Bienvenidos");
-                        return  "Bienvenido";
+                        System.out.println("Entrando a pagina de inicio");
+                        return  "INICIO";
 
                 });
                ;
