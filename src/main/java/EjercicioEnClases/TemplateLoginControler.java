@@ -17,13 +17,13 @@ public class TemplateLoginControler {
 
     public void FreemarkerLogin(){
 
-        get("/formulario/", (request, response) -> {
+        get("/formulario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo", "Formulario registrar");
-            return renderFreemarker(attributes, "formulario.ftl");
+            return renderFreemarker(attributes, "/formulario.ftl");
         });
-        
-        /*
+
+
         post("/registrar/", (request, response) -> {
             String usuario =request.queryParams("usuario");
             String contrasena =request.queryParams("contra");
@@ -35,7 +35,7 @@ public class TemplateLoginControler {
             return 200;
         });
 
-        */
+
 
     }
 

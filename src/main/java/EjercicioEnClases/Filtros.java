@@ -13,9 +13,8 @@ public class Filtros {
                         if(usuario.getUsuario()==null ){
                                 response.redirect("/formulario");
 
-                        }else if(!ComprobarUsuario(usuario.getContrasena(),(usuario.getUsuario()))){
-                                        response.redirect("/formulario");
-                                }
+                        }else if(!ComprobarUsuario(usuario.getUsuario(),(usuario.getContrasena()))){
+                                        response.redirect("/formulario"); }
 
 
                 });
