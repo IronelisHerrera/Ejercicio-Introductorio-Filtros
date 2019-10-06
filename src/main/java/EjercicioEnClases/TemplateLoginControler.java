@@ -22,15 +22,7 @@ public class TemplateLoginControler {
             attributes.put("titulo", "Formulario registrar");
             return renderFreemarker(attributes, "formulario.ftl");
         });
-
-         /*
-        response.cookie("usuario",request.queryParams("usuario"));
-        System.out.println(request.queryParams("usuario"));
-        request.session(true).attribute("usuario",request.queryParams("usuario"));
-        request.session().attribute("contrasena",request.queryParams("contrasena"));
-        response.redirect("/");
-        return "ok";
-        */
+        
         /*
         post("/registrar/", (request, response) -> {
             String usuario =request.queryParams("usuario");
