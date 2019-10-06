@@ -3,12 +3,12 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Registrar</title>
+    <title>${titulo}</title>
 </head>
 <br>
 <h1>FORMULARIO DE REGISTRO</h1>>
-<form action="/formularioDeInicio/" method="post"  >
-    nombre: <input name ="nombre" type="text"/><br/>
+<form action="/register/" method="post" enctype="application/x-www-form-urlencoded" >
+    usuario: <input name ="usuario" type="text"/><br/>
     contra: <input name ="contra" type="number">
     <button name="enviar" type="submit">Enviar</button>
 </form>

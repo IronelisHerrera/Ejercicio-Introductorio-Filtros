@@ -3,7 +3,7 @@ package EjercicioEnClases;
 public class Usuario {
 
     private String usuario;
-    private String contrasena; //
+    private String contrasena;
 
     public Usuario() {
     }
@@ -14,6 +14,7 @@ public class Usuario {
     }
 
     public String getUsuario() {
+
         return usuario;
     }
 

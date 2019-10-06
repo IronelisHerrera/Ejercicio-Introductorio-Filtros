@@ -2,7 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f0750a2-615d-4baa-96e9-7a06c895d6bd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.2.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Filtros.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Filtros.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/TemplateLoginControler.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/TemplateLoginControler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/EjercicioEnClases/Usuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/demo-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/build/libs/demo-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/resources/main/publico/formulario.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/build/resources/main/publico/formulario.ftl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/TemplateLoginControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/TemplateLoginControler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/publico/formulario.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/publico/formulario.ftl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +68,6 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="demo" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="demo" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
               </path>
             </expand>
             <select />
@@ -129,7 +141,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1570319893086</updated>
-      <workItem from="1570319903298" duration="3235000" />
+      <workItem from="1570319903298" duration="12011000" />
     </task>
     <servers />
   </component>

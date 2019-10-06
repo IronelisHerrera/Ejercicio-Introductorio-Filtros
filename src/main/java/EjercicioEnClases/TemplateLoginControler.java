@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 public class TemplateLoginControler {
 
@@ -18,10 +19,31 @@ public class TemplateLoginControler {
 
         get("/formulario/", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            attributes.put("titulo", "Formulario en FreeMarker");
+            attributes.put("titulo", "Formulario registrar");
             return renderFreemarker(attributes, "formulario.ftl");
         });
 
+         /*
+        response.cookie("usuario",request.queryParams("usuario"));
+        System.out.println(request.queryParams("usuario"));
+        request.session(true).attribute("usuario",request.queryParams("usuario"));
+        request.session().attribute("contrasena",request.queryParams("contrasena"));
+        response.redirect("/");
+        return "ok";
+        */
+        /*
+        post("/registrar/", (request, response) -> {
+            String usuario =request.queryParams("usuario");
+            String contrasena =request.queryParams("contra");
+
+            response.cookie("usuario", usuario);
+            request.session(true).attribute("usuario", usuario);
+            request.session().attribute("contra", contrasena);
+            response.redirect("/");
+            return 200;
+        });
+
+        */
 
     }
 
