@@ -1,7 +1,7 @@
 package EjercicioEnClases;
 
 import static spark.Spark.before;
-import javax.servlet.http.HttpServletResponse;
+
 
 
 public class Filtros {
@@ -10,24 +10,39 @@ public class Filtros {
 
                 before("/", (request, response)->{
                         Usuario usuario = new Usuario(request.session().attribute("usuario"),request.session().attribute("contra"));
+
                         if(usuario.getUsuario()==null ){
                                 response.redirect("/formulario");
 
-                        }else if(!ComprobarUsuario(usuario.getUsuario(),(usuario.getContrasena()))){
-                                        response.redirect("/formulario"); }
+                        }else if(!ComprobarUsuario("admin")==usuario.getUsuario().equals("admin") && !comprobarContrasena("admin")==usuario.getContrasena().equals("admin")){
+                                response.redirect("/formulario");
+                        }
+
 
 
                 });
 
         }
-        public boolean ComprobarUsuario(String usuario, String contra){
-                if(usuario.equals("admin") && contra.equals("23")){
+
+
+
+        private boolean ComprobarUsuario(String usuario) {
+                if (usuario.equals("admin") ){
                         return true;
                 }
                 else{
                         return false;
                 }
         }
+
+        private boolean comprobarContrasena(String contra){
+                if(contra.equals("admin")){
+                        return true;
+                }
+                return false;
+        }
+
+
 
 
 
