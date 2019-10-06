@@ -1,7 +1,6 @@
 package EjercicioEnClases;
 
-import static spark.Spark.before;
-
+import static spark.Spark.*;
 
 
 public class Filtros {
@@ -20,10 +19,17 @@ public class Filtros {
 
 
 
+
                 });
 
-        }
+                get("/", (request, response) -> {
+                        System.out.println("Entrando a Bienvenidos");
+                        return  "Bienvenido";
 
+                });
+               ;
+
+        }
 
 
         private boolean ComprobarUsuario(String usuario) {

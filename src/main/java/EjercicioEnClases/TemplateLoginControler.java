@@ -28,13 +28,13 @@ public class TemplateLoginControler {
             String usuario =request.queryParams("usuario");
             String contrasena =request.queryParams("contra");
 
-            response.cookie("usuario", usuario);
+            response.cookie("usuario", usuario,60);
             request.session(true).attribute("usuario", usuario);
             request.session().attribute("contra", contrasena);
             response.redirect("/");
+
             return 200;
         });
-
 
 
     }
@@ -42,6 +42,7 @@ public class TemplateLoginControler {
     public static String renderFreemarker(Map<String, Object> model, String templatePath) {
         return new FreeMarkerEngine().render(new ModelAndView(model, templatePath));
     }
+
 
 
 }
