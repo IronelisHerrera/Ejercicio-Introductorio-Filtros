@@ -1,0 +1,694 @@
+Index: src/main/resources/spark/template/freemarker/formulario.ftl
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/html\">\n<head>\n\n    <title>${titulo}</title>\n    <link  rel=\"stylesheet\" href=\"css/style.css\" type=\"text/css\"  />\n\n</head>\n<body>\n\n<h1>Registro</h1>\n<form action=\"/registrar/\" method=\"post\"  enctype=\"application/x-www-form-urlencoded\">\n    <div class=\"container\" >\n    Usuario: <input name=\"usuario\" type=\"text\" id = \"user\"/><br/><br/>\n    Clave: <input name=\"contra\" type=\"text \" id=\"contra\"/><br/><br/>\n    <button name=\"Enviar\" type=\"submit\" id=\"buton\">Enviar</button> </div>\n\n</form>\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/spark/template/freemarker/formulario.ftl b/src/main/resources/spark/template/freemarker/formulario.ftl
+--- a/src/main/resources/spark/template/freemarker/formulario.ftl	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/src/main/resources/spark/template/freemarker/formulario.ftl	(date 1608182776783)
+@@ -11,7 +11,7 @@
+ <h1>Registro</h1>
+ <form action="/registrar/" method="post"  enctype="application/x-www-form-urlencoded">
+     <div class="container" >
+-    Usuario: <input name="usuario" type="text" id = "user"/><br/><br/>
++    Usuario: <input name="usuario" type="text" id = "usuario"/><br/><br/>
+     Clave: <input name="contra" type="text " id="contra"/><br/><br/>
+     <button name="Enviar" type="submit" id="buton">Enviar</button> </div>
+ 
+Index: src/main/java/EjercicioEnClases/TemplateLoginControler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/EjercicioEnClases/TemplateLoginControler.java b/src/main/java/EjercicioEnClases/ControladoraLogin.java
+rename from src/main/java/EjercicioEnClases/TemplateLoginControler.java
+rename to src/main/java/EjercicioEnClases/ControladoraLogin.java
+--- a/src/main/java/EjercicioEnClases/TemplateLoginControler.java	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/src/main/java/EjercicioEnClases/ControladoraLogin.java	(date 1608182515372)
+@@ -9,9 +9,9 @@
+ import static spark.Spark.get;
+ import static spark.Spark.post;
+ 
+-public class TemplateLoginControler {
++public class ControladoraLogin {
+ 
+-    public void CogeForumularioUsuario() {
++    public void CogeFormularioUsuario() {
+         FreemarkerLogin();
+     }
+ 
+Index: src/main/java/EjercicioEnClases/Usuario.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/EjercicioEnClases/Usuario.java b/src/main/java/Modelo/Usuario.java
+rename from src/main/java/EjercicioEnClases/Usuario.java
+rename to src/main/java/Modelo/Usuario.java
+--- a/src/main/java/EjercicioEnClases/Usuario.java	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/src/main/java/Modelo/Usuario.java	(date 1608183528591)
+@@ -1,16 +1,16 @@
+-package EjercicioEnClases;
++package Modelo;
+ 
+ public class Usuario {
+ 
+     private String usuario;
+-    private String contrasena;
++    private String contra;
+ 
+     public Usuario() {
+     }
+ 
+-    public Usuario(String usuario, String contrasena) {
++    public Usuario(String usuario, String contra) {
+         this.usuario = usuario;
+-        this.contrasena = contrasena;
++        this.contra = contra;
+     }
+ 
+     public String getUsuario() {
+@@ -23,11 +23,11 @@
+     }
+ 
+     public String getContrasena() {
+-        return contrasena;
++        return contra;
+     }
+ 
+-    public void setContrasena(String contrasena) {
+-        this.contrasena = contrasena;
++    public void setContrasena(String contra) {
++        this.contra = contra;
+     }
+ 
+ 
+Index: src/main/java/EjercicioEnClases/Filtros.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package EjercicioEnClases;\n\nimport static spark.Spark.*;\n\n\npublic class Filtros {\n\n        public void aplicarFiltros(){\n\n                before(\"/\", (request, response)->{\n                        Usuario usuario = new Usuario(request.session().attribute(\"usuario\"),request.session().attribute(\"contra\"));\n\n                        if(usuario.getUsuario()==null ){\n                                response.redirect(\"/formulario\");\n\n                        }else if(!ComprobarUsuario(\"admin\")==usuario.getUsuario().equals(\"admin\") && !comprobarContrasena(\"admin\")==usuario.getContrasena().equals(\"admin\")){\n                                response.redirect(\"/formulario\");\n                        }\n\n\n                });\n\n                get(\"/\", (request, response) -> {\n                        System.out.println(\"Entrando a pagina de inicio\");\n                        return  \"INICIO\";\n\n                });\n               ;\n\n        }\n\n\n        private boolean ComprobarUsuario(String usuario) {\n                if (usuario.equals(\"admin\") ){\n                        return true;\n                }\n                else{\n                        return false;\n                }\n        }\n\n        private boolean comprobarContrasena(String contra){\n                if(contra.equals(\"admin\")){\n                        return true;\n                }\n                return false;\n        }\n\n\n\n\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/EjercicioEnClases/Filtros.java b/src/main/java/EjercicioEnClases/Filtros.java
+--- a/src/main/java/EjercicioEnClases/Filtros.java	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/src/main/java/EjercicioEnClases/Filtros.java	(date 1608185442006)
+@@ -1,7 +1,15 @@
+ package EjercicioEnClases;
+ 
++import Modelo.Usuario;
++
+ import static spark.Spark.*;
+ 
++/**
++ * Esta clase se encarga de redireccionar al formulario de registro si las credenciales proporcionadas no coinciden con admin.
++ * No permite navegar a la página de inicio al menos de que no haya un usuario registrado.
++ * @author Ironelis Herrera
++ */
++
+ 
+ public class Filtros {
+ 
+@@ -13,7 +21,7 @@
+                         if(usuario.getUsuario()==null ){
+                                 response.redirect("/formulario");
+ 
+-                        }else if(!ComprobarUsuario("admin")==usuario.getUsuario().equals("admin") && !comprobarContrasena("admin")==usuario.getContrasena().equals("admin")){
++                        }else if(!ComprobarUsuario("admin")==usuario.getUsuario().equals("admin") || !comprobarContrasena("admin")==usuario.getContrasena().equals("admin")){
+                                 response.redirect("/formulario");
+                         }
+ 
+@@ -25,25 +33,27 @@
+                         return  "INICIO";
+ 
+                 });
+-               ;
+ 
+         }
+ 
++        /**
++         *
++         * @param usuario
++         * @return admin como nombre predeterminado para el Usuario.
++         */
+ 
+         private boolean ComprobarUsuario(String usuario) {
+-                if (usuario.equals("admin") ){
+-                        return true;
+-                }
+-                else{
+-                        return false;
+-                }
++                return usuario.equals("admin");
+         }
++
++        /**
++         *
++         * @param contra
++         * @return admin como nombre predeterminado para la Clave del Usuario.
++         */
+ 
+         private boolean comprobarContrasena(String contra){
+-                if(contra.equals("admin")){
+-                        return true;
+-                }
+-                return false;
++                return contra.equals("admin");
+         }
+ 
+ 
+Index: src/main/java/EjercicioEnClases/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/EjercicioEnClases/Main.java b/src/main/java/Main.java
+rename from src/main/java/EjercicioEnClases/Main.java
+rename to src/main/java/Main.java
+--- a/src/main/java/EjercicioEnClases/Main.java	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/src/main/java/Main.java	(date 1608182185082)
+@@ -1,30 +1,21 @@
+-package EjercicioEnClases;
+-
+-import spark.Session;
++import EjercicioEnClases.Filtros;
++import EjercicioEnClases.ControladoraLogin;
+ 
+ import static spark.Spark.*;
+-
++/**
++ * Clase cargar formulario en freemarker
++ * @author Ironelis Herrera
++ */
+ 
+ public class Main {
+     public static void main(String[] args) {
+ 
+         port(8081);
+-
+-         /*
+-            //http://localhost:8081/formulario
+-            Para repetir el proceso una vez visto el --bienvenidos--, poner la misma url
+-         */
+         staticFiles.location("/spark/template/freemarker");
+ 
+-
+-
+-        new TemplateLoginControler().CogeForumularioUsuario();
++        new ControladoraLogin().CogeFormularioUsuario();
+ 
+         new Filtros().aplicarFiltros();
+ 
+-
+-
+-
+-
+     }
+ }
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"modules\">\n          <set>\n            <option value=\"$PROJECT_DIR$\" />\n          </set>\n        </option>\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/.idea/gradle.xml	(date 1608181572255)
+@@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+@@ -10,7 +11,6 @@
+             <option value="$PROJECT_DIR$" />
+           </set>
+         </option>
+-        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_8\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/out\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/.idea/misc.xml	(date 1608181650024)
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: .idea/modules/demo.main.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules/demo.main.iml b/.idea/modules/demo.main.iml
+new file mode 100644
+--- /dev/null	(date 1608181650000)
++++ b/.idea/modules/demo.main.iml	(date 1608181650000)
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module external.system.module.type="sourceSet" type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager">
++    <output url="file://$MODULE_DIR$/../../build/classes/java/main" />
++    <exclude-output />
++    <content url="file://$MODULE_DIR$/../../src/main">
++      <sourceFolder url="file://$MODULE_DIR$/../../src/main/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/../../src/main/resources" type="java-resource" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="Gradle: com.sparkjava:spark-template-freemarker:2.5.5" level="project" />
++    <orderEntry type="library" name="Gradle: com.sparkjava:spark-core:2.9.1" level="project" />
++    <orderEntry type="library" name="Gradle: org.freemarker:freemarker:2.3.26-incubating" level="project" />
++    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-simple:1.7.21" level="project" />
++    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.25" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-webapp:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-server:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-server:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-servlet:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-servlet:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-xml:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-client:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-http:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-common:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: javax.servlet:javax.servlet-api:3.1.0" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-io:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty.websocket:websocket-api:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-security:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-util:9.4.18.v20190429" level="project" />
++    <orderEntry type="library" name="Gradle: org.eclipse.jetty:jetty-client:9.4.18.v20190429" level="project" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/modules/demo.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules/demo.iml b/.idea/modules/demo.iml
+new file mode 100644
+--- /dev/null	(date 1608181649988)
++++ b/.idea/modules/demo.iml	(date 1608181649988)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$/../..">
++      <excludeFolder url="file://$MODULE_DIR$/../../.gradle" />
++      <excludeFolder url="file://$MODULE_DIR$/../../build" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"5f0750a2-615d-4baa-96e9-7a06c895d6bd\" name=\"Default Changelist\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"EXCLUDED_CONVERTED_TO_IGNORED\" value=\"true\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"CoverageViewManager\">\n    <option name=\"myElementSize\" value=\"26\" />\n  </component>\n  <component name=\"ExternalProjectsData\">\n    <projectState path=\"$PROJECT_DIR$\">\n      <ProjectState />\n    </projectState>\n  </component>\n  <component name=\"ExternalProjectsManager\">\n    <system id=\"GRADLE\">\n      <state>\n        <task path=\"$PROJECT_DIR$\">\n          <activation />\n        </task>\n        <projects_view>\n          <tree_state>\n            <expand>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n                <item name=\"main\" type=\"396b929e:GradleViewContributor$SourceSetNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n                <item name=\"main\" type=\"396b929e:GradleViewContributor$SourceSetNode\" />\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n                <item name=\"main\" type=\"396b929e:GradleViewContributor$SourceSetNode\" />\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\n                <item name=\"com.sparkjava:spark-template-freemarker:2.5.5\" type=\"cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n                <item name=\"main\" type=\"396b929e:GradleViewContributor$SourceSetNode\" />\n                <item name=\"Dependencies\" type=\"6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode\" />\n                <item name=\"com.sparkjava:spark-core:2.9.1\" type=\"cfea851d:ExternalSystemViewDefaultContributor$LibraryDependencyDataExternalSystemNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Source Sets\" type=\"e897c970:GradleViewContributor$SourceSetsNode\" />\n                <item name=\"test\" type=\"396b929e:GradleViewContributor$SourceSetNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"build\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"help\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"other\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Tasks\" type=\"e4a08cd1:TasksNode\" />\n                <item name=\"verification\" type=\"c8890929:TasksNode$1\" />\n              </path>\n              <path>\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\n                <item name=\"demo\" type=\"f1a62948:ProjectNode\" />\n                <item name=\"Run Configurations\" type=\"7b0102dc:RunConfigurationsNode\" />\n              </path>\n            </expand>\n            <select />\n          </tree_state>\n        </projects_view>\n      </state>\n    </system>\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"ProjectId\" id=\"1Ro40WTJTHy118gMJ6jJbOLqh3T\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"PropertiesComponent\">\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\n  </component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"C:\\Users\\Martinez\\IdeaProjects\\demo\\src\\main\\resources\\spark\\template\\freemarker\\css\" />\n      <recent name=\"C:\\Users\\Martinez\\IdeaProjects\\demo\\src\\main\\resources\\template\\freemarker\" />\n      <recent name=\"C:\\Users\\Martinez\\IdeaProjects\\demo\\src\\main\\resources\\publico\" />\n      <recent name=\"C:\\Users\\Martinez\\IdeaProjects\\demo\\src\\main\\resources\\publico\\css\" />\n      <recent name=\"C:\\Users\\Martinez\\IdeaProjects\\demo\\src\\main\\resources\" />\n    </key>\n  </component>\n  <component name=\"RunDashboard\">\n    <option name=\"ruleStates\">\n      <list>\n        <RuleState>\n          <option name=\"name\" value=\"ConfigurationTypeDashboardGroupingRule\" />\n        </RuleState>\n        <RuleState>\n          <option name=\"name\" value=\"StatusDashboardGroupingRule\" />\n        </RuleState>\n      </list>\n    </option>\n  </component>\n  <component name=\"RunManager\" selected=\"Application.Main\">\n    <configuration name=\"Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"EjercicioEnClases.Main\" />\n      <module name=\"demo.main\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"EjercicioEnClases.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"demo [check]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"check\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"demo [classes]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"classes\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"demo [compileJava]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"compileJava\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"demo [tasks]\" type=\"GradleRunConfiguration\" factoryName=\"Gradle\" temporary=\"true\">\n      <ExternalSystemSettings>\n        <option name=\"executionName\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"externalSystemIdString\" value=\"GRADLE\" />\n        <option name=\"scriptParameters\" />\n        <option name=\"taskDescriptions\">\n          <list />\n        </option>\n        <option name=\"taskNames\">\n          <list>\n            <option value=\"tasks\" />\n          </list>\n        </option>\n        <option name=\"vmOptions\" />\n      </ExternalSystemSettings>\n      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>\n      <method v=\"2\" />\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"Application.Main\" />\n        <item itemvalue=\"Gradle.demo [check]\" />\n        <item itemvalue=\"Gradle.demo [compileJava]\" />\n        <item itemvalue=\"Gradle.demo [tasks]\" />\n        <item itemvalue=\"Gradle.demo [classes]\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SvnConfiguration\">\n    <configuration />\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"5f0750a2-615d-4baa-96e9-7a06c895d6bd\" name=\"Default Changelist\" comment=\"\" />\n      <created>1570319893086</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1570319893086</updated>\n      <workItem from=\"1570319903298\" duration=\"40043000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"1\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\n    <SUITE FILE_PATH=\"coverage/demo$Main.ic\" NAME=\"Main Coverage Results\" MODIFIED=\"1570351809668\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"false\">\n      <FILTER>EjercicioEnClases.*</FILTER>\n    </SUITE>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/.idea/workspace.xml	(date 1608185442434)
+@@ -1,10 +1,25 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="SELECTIVE" />
++  </component>
+   <component name="ChangeListManager">
+     <list default="true" id="5f0750a2-615d-4baa-96e9-7a06c895d6bd" name="Default Changelist" comment="">
++      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/modules/demo.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/modules/demo.main.iml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/TemplateLoginControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/ControladoraLogin.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/Usuario.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/spark/template/freemarker/formulario.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spark/template/freemarker/formulario.ftl" afterDir="false" />
+     </list>
+-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -124,7 +139,13 @@
+   </component>
+   <component name="ProjectId" id="1Ro40WTJTHy118gMJ6jJbOLqh3T" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
++  <component name="ProjectViewState">
++    <option name="hideEmptyMiddlePackages" value="true" />
++    <option name="showLibraryContents" value="true" />
++  </component>
+   <component name="PropertiesComponent">
++    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
++    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+     <property name="WebServerToolWindowFactoryState" value="false" />
+     <property name="aspect.path.notification.shown" value="true" />
+@@ -137,26 +158,17 @@
+       <recent name="C:\Users\Martinez\IdeaProjects\demo\src\main\resources\publico\css" />
+       <recent name="C:\Users\Martinez\IdeaProjects\demo\src\main\resources" />
+     </key>
+-  </component>
+-  <component name="RunDashboard">
+-    <option name="ruleStates">
+-      <list>
+-        <RuleState>
+-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+-        </RuleState>
+-        <RuleState>
+-          <option name="name" value="StatusDashboardGroupingRule" />
+-        </RuleState>
+-      </list>
+-    </option>
++    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
++      <recent name="" />
++    </key>
+   </component>
+   <component name="RunManager" selected="Application.Main">
+     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="EjercicioEnClases.Main" />
+-      <module name="demo.main" />
++      <option name="MAIN_CLASS_NAME" value="Main" />
++      <module name="Ejercicio-Introductorio-Filtros.main" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="EjercicioEnClases.*" />
++          <option name="PATTERN" value=".*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+@@ -164,6 +176,17 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
++    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
++      <option name="arquillianRunConfiguration">
++        <value>
++          <option name="containerStateName" value="" />
++        </value>
++      </option>
++      <option name="TEST_OBJECT" value="class" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
+     <configuration name="demo [check]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+       <ExternalSystemSettings>
+         <option name="executionName" />
+@@ -180,7 +203,9 @@
+         </option>
+         <option name="vmOptions" />
+       </ExternalSystemSettings>
+-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
++      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
+       <method v="2" />
+     </configuration>
+     <configuration name="demo [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -199,7 +224,9 @@
+         </option>
+         <option name="vmOptions" />
+       </ExternalSystemSettings>
+-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
++      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
+       <method v="2" />
+     </configuration>
+     <configuration name="demo [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -218,7 +245,9 @@
+         </option>
+         <option name="vmOptions" />
+       </ExternalSystemSettings>
+-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
++      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
+       <method v="2" />
+     </configuration>
+     <configuration name="demo [tasks]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+@@ -237,7 +266,9 @@
+         </option>
+         <option name="vmOptions" />
+       </ExternalSystemSettings>
+-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
++      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
++      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
++      <DebugAllEnabled>false</DebugAllEnabled>
+       <method v="2" />
+     </configuration>
+     <recent_temporary>
+@@ -250,6 +281,7 @@
+       </list>
+     </recent_temporary>
+   </component>
++  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="SvnConfiguration">
+     <configuration />
+   </component>
+@@ -261,11 +293,12 @@
+       <option name="presentableId" value="Default" />
+       <updated>1570319893086</updated>
+       <workItem from="1570319903298" duration="40043000" />
++      <workItem from="1608181566941" duration="3871000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="1" />
++    <option name="version" value="3" />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+     <option name="TAB_STATES">
+@@ -277,6 +310,7 @@
+         </entry>
+       </map>
+     </option>
++    <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+     <SUITE FILE_PATH="coverage/demo$Main.ic" NAME="Main Coverage Results" MODIFIED="1570351809668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	(date 1608181699421)
++++ b/.idea/uiDesigner.xml	(date 1608181699421)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.png" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.png" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.png" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.png" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: settings.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>rootProject.name = 'demo'\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/settings.gradle b/settings.gradle
+--- a/settings.gradle	(revision 19db4b70e5b4beeddbb7a7f8f7a0f86ae595fd92)
++++ b/settings.gradle	(date 1608181648572)
+@@ -1,2 +1,2 @@
+-rootProject.name = 'demo'
++rootProject.name = 'Ejercicio-Introductorio-Filtros'
+ 
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1608181650036)
++++ b/.idea/jarRepositories.xml	(date 1608181650036)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="MavenRepo" />
++      <option name="name" value="MavenRepo" />
++      <option name="url" value="https://repo.maven.apache.org/maven2/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1608181574959)
++++ b/.idea/compiler.xml	(date 1608181574959)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="1.8" />
++  </component>
++</project>
+\ No newline at end of file

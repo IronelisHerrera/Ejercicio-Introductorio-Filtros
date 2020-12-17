@@ -11,7 +11,7 @@
 <h1>Registro</h1>
 <form action="/registrar/" method="post"  enctype="application/x-www-form-urlencoded">
     <div class="container" >
-    Usuario: <input name="usuario" type="text" id = "user"/><br/><br/>
+    Usuario: <input name="usuario" type="text" id = "usuario"/><br/><br/>
     Clave: <input name="contra" type="text " id="contra"/><br/><br/>
     <button name="Enviar" type="submit" id="buton">Enviar</button> </div>
 

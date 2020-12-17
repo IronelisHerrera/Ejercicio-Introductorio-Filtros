@@ -9,9 +9,9 @@ import java.util.Map;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
-public class TemplateLoginControler {
+public class ControladoraLogin {
 
-    public void CogeForumularioUsuario() {
+    public void CogeFormularioUsuario() {
         FreemarkerLogin();
     }
 

@@ -1,16 +1,16 @@
-package EjercicioEnClases;
+package Modelo;
 
 public class Usuario {
 
     private String usuario;
-    private String contrasena;
+    private String contra;
 
     public Usuario() {
     }
 
-    public Usuario(String usuario, String contrasena) {
+    public Usuario(String usuario, String contra) {
         this.usuario = usuario;
-        this.contrasena = contrasena;
+        this.contra = contra;
     }
 
     public String getUsuario() {
@@ -23,11 +23,11 @@ public class Usuario {
     }
 
     public String getContrasena() {
-        return contrasena;
+        return contra;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setContrasena(String contra) {
+        this.contra = contra;
     }
 
 
