@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5f0750a2-615d-4baa-96e9-7a06c895d6bd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/demo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/demo.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Filtros.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/TemplateLoginControler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/ControladoraLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/EjercicioEnClases/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Modelo/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/spark/template/freemarker/formulario.ftl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/spark/template/freemarker/formulario.ftl" afterDir="false" />
-    </list>
+    <list default="true" id="5f0750a2-615d-4baa-96e9-7a06c895d6bd" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -293,7 +278,7 @@
       <option name="presentableId" value="Default" />
       <updated>1570319893086</updated>
       <workItem from="1570319903298" duration="40043000" />
-      <workItem from="1608181566941" duration="3871000" />
+      <workItem from="1608181566941" duration="4321000" />
     </task>
     <servers />
   </component>
